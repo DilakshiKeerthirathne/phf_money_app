@@ -1,78 +1,222 @@
 # PHF Money Management App
 
-Offline-first Flutter money management app built using Clean Architecture.
-No backend, no internet dependency — all data is stored locally using **Hive**
-(chosen instead of Drift/SQLite so it runs lightly in Chrome without Android
-Studio or extra native setup).
+## Overview
 
-## Features Completed (MVP "Must have")
-- Accounts (create, edit, delete, list — Cash/Bank/Card/Wallet)
-- Categories (default seeded + custom, income/expense)
-- Transactions (add, edit, delete, list — income/expense with validation)
-- Dashboard (total balance, monthly income/expense, recent transactions)
+PHF Money Manager is an offline-first personal finance management mobile application developed using Flutter.
 
-## Not Included Yet (documented honestly, per guide's "Known Issues" rule)
-- Budgets ("Should have")
-- Reports/charts ("Should have")
-- Settings screen ("Should have")
-- CSV/JSON export, PIN lock (Stretch)
+The application helps users manage their personal finances by tracking accounts, categories, income, expenses, budgets, and financial reports.
 
-## Tech Stack
-Flutter, Riverpod (AsyncNotifier), Hive (local NoSQL storage), intl, uuid.
+The project follows Clean Architecture principles with clear separation between presentation, domain, and data layers.
 
-## Folder Structure (Clean Architecture)
-```
+---
+
+# Features Completed
+
+## Account Management
+
+- Create accounts/wallets
+- Update account details
+- Delete accounts
+- View account balances
+
+## Category Management
+
+- Create income categories
+- Create expense categories
+- Update and delete categories
+
+## Transaction Management
+
+- Add income transactions
+- Add expense transactions
+- Edit and delete transactions
+- View transaction history
+
+## Dashboard
+
+- Total income calculation
+- Total expense calculation
+- Current balance calculation
+- Recent transaction overview
+
+## Reports
+
+- Income vs expense analysis
+- Financial summaries
+- Interactive charts
+
+## Settings
+
+- Light/Dark/System theme support
+- Currency selection
+- Export transaction data
+- Reset application data
+
+## Data Persistence
+
+- Offline local storage
+- Data remains available after application restart
+
+---
+
+# Technology Stack
+
+## Frontend
+
+- Flutter
+- Dart
+
+## State Management
+
+- Riverpod
+
+## Architecture
+
+- Clean Architecture
+
+## Local Storage
+
+- Hive
+
+## Packages Used
+
+- flutter_riverpod
+- hive_flutter
+- intl
+- fl_chart
+- go_router
+- path_provider
+- share_plus
+- flutter_launcher_icons
+
+---
+
+# Project Architecture
+
 lib/
-  main.dart               # Hive init + app entry
-  app/app_shell.dart       # Bottom navigation shell
-  core/                    # theme, utils, widgets, errors (shared)
-  data/local/hive_boxes.dart  # local database setup
-  features/
-    accounts/
-      domain/    entities + repository interface
-      data/      Hive repository implementation
-      presentation/  providers (Riverpod) + pages
-    categories/  (same structure)
-    transactions/ (same structure)
-    dashboard/   presentation only (derives data from the above)
-```
-Dependency direction follows the guide: Presentation → domain use-case-style
-notifiers → domain repository interfaces → data repository implementations →
-Hive local storage. The domain layer has zero Flutter/Hive imports.
 
-## How to Run (Chrome, no Android Studio needed)
-```bash
+├── core/
+│ ├── theme/
+│ ├── utils/
+│ ├── widgets/
+│ └── errors/
+
+├── data/
+│ └── local/
+
+├── features/
+│ ├── accounts/
+│ │ ├── data/
+│ │ ├── domain/
+│ │ └── presentation/
+
+│ ├── categories/
+│ ├── transactions/
+│ ├── budgets/
+│ ├── dashboard/
+│ ├── reports/
+│ └── settings/
+
+## └── main.dart
+
+# How to Run
+
+## Requirements
+
+- Flutter SDK installed
+- Android Studio / VS Code
+- Android device or emulator
+
+## Install Dependencies
+
 flutter pub get
-flutter run -d chrome
-```
-That's it — no `build_runner`, no code generation, nothing else to install.
 
-If `flutter run -d chrome` doesn't find Chrome automatically:
-```bash
-flutter devices        # confirm Chrome is listed
-flutter run -d chrome --web-renderer html   # lighter renderer for low RAM
-```
+## Generate Code (if required)
 
-## How to Build a Release Web Build (optional, for submission)
-```bash
-flutter build web
-```
-Output goes to `build/web/` — this folder can be zipped or hosted anywhere
-as your runnable build evidence.
+flutter pub run build_runner build --delete-conflicting-outputs
 
-## Manual QA Checklist (do this before submitting)
-- [ ] App opens without crashing
-- [ ] Default categories appear on first launch (only once)
-- [ ] Can create an account
-- [ ] Can add an income transaction
-- [ ] Can add an expense transaction
-- [ ] Dashboard total balance updates correctly
-- [ ] Monthly income/expense are correct
-- [ ] Data survives closing and reopening the browser tab (refresh page)
-- [ ] Edit and delete work safely (account with transactions blocks delete)
-- [ ] Empty states show when there's no data
-- [ ] Form validation shows errors for invalid input
+## Run Application
 
-## Known Issues / Next Steps
-- Budgets, Reports, and Settings screens are not yet built (planned next).
-- No app lock / export yet (stretch items, deferred per priority order).
+flutter run
+
+---
+
+# Build APK
+
+Create release APK:
+
+flutter build apk --release
+
+APK location:
+
+build/app/outputs/flutter-apk/app-release.apk
+
+---
+
+# Screenshots
+
+## Splash Screen
+
+![Splash Screen](screenshots/splash.jpeg)
+
+## Dashboard
+
+![Dashboard](screenshots/dashboard1.jpeg)
+
+![Dashboard Summary](screenshots/dashboard2.jpeg)
+
+## Transactions
+
+![Transactions](screenshots/transaction.jpeg)
+
+## Add Transaction
+
+![Add Transaction](screenshots/add_transaction.jpeg)
+
+## Accounts
+
+![Accounts](screenshots/accounts.jpeg)
+
+## Categories
+
+![Categories](screenshots/categories.jpeg)
+
+## Budgets
+
+![Budgets](screenshots/budgets.jpeg)
+
+## Reports
+
+![Reports](screenshots/reports.jpeg)
+
+## Settings
+
+![Settings](screenshots/settings.jpeg)
+
+## More
+
+## ![More](screenshots/more.jpeg)
+
+# Testing Notes
+
+Tested Features:
+
+✅ Application launch  
+✅ Navigation  
+✅ Account CRUD  
+✅ Category CRUD  
+✅ Transaction CRUD  
+✅ Dashboard calculations  
+✅ Reports  
+✅ Theme switching  
+✅ Currency selection  
+✅ Export data  
+✅ Data persistence after restart
+
+---
+
+# GitHub Repository
+
+Source Code:
+
+https://github.com/DilakshiKeerthirathne/phf_money_app
