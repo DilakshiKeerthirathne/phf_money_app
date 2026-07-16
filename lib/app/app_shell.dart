@@ -40,8 +40,6 @@ class _AppShellState extends State<AppShell> {
             _index = value;
           });
         },
-        backgroundColor: Colors.white,
-        indicatorColor: AppColors.phfBlue.withValues(alpha: 0.15),
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.home_outlined),

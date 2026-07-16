@@ -225,9 +225,9 @@ class _SplashPageState extends State<SplashPage>
                             ),
                             child: Center(
                               child: Container(
-                                height: 105,
-                                width: 105,
-                                padding: const EdgeInsets.all(10),
+                                height: 125,
+                                width: 125,
+                                padding: const EdgeInsets.all(6),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.white.withValues(alpha: .92),

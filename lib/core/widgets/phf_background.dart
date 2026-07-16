@@ -10,15 +10,22 @@ class PHFBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFFEAF3FF),
-            Color(0xFFF7FAFF),
-          ],
+          colors: isDark
+              ? const [
+                  Color(0xFF121212),
+                  Color(0xFF1E1E1E),
+                ]
+              : const [
+                  Color(0xFFEAF3FF),
+                  Color(0xFFF7FAFF),
+                ],
         ),
       ),
       child: child,
